@@ -3,6 +3,9 @@ package com.example.learningdagger2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.learningdagger2.Business.Business;
+import com.example.learningdagger2.Business.BusinessComponent;
+import com.example.learningdagger2.Business.DaggerBusinessComponent;
 import com.example.learningdagger2.Car.Car;
 import com.example.learningdagger2.Car.CarComponent;
 import com.example.learningdagger2.Car.DaggerCarComponent;
@@ -16,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     @Inject Car car;
     @Inject
     Pen pen;
+    @Inject
+    Business business;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +31,13 @@ public class MainActivity extends AppCompatActivity {
 ////        car = carComponent.getCar();
 //        car.drive();
 
-        PenComponent component = DaggerPenComponent.create();
+//        PenComponent component = DaggerPenComponent.create();
+//        component.inject(this);
+//        pen.write();
+
+        BusinessComponent component = DaggerBusinessComponent.create();
+
         component.inject(this);
-        pen.write();
+        business.work();
     }
 }
